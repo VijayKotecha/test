@@ -1,0 +1,19 @@
+# assumptions
+#user being used with ACCESS Keys has admin access
+#user has privieleges to create and configure ec2 instances
+#ansble is installed with boto
+
+- hosts: localhost
+  connection: local
+  gather_facts: False
+  tasks:
+    - name: provision server
+      ec2:
+            region: "eu-west-1"
+            zone: "eu-west-1a"
+            image: "ami-f95ef58a"
+            instance_type: "t2.micro"
+            instance_tags:
+                Name: "appserver"
+                number: "1"
+		type: "app"
